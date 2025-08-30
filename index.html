@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>SnapFriends Connect</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f7f7f7; text-align: center; }
+    h1 { color: #FFFC00; background: black; padding: 15px; border-radius: 10px; }
+    form { margin: 20px auto; width: 300px; }
+    input, textarea, button {
+      width: 100%; padding: 10px; margin: 5px 0; border-radius: 5px; border: 1px solid #ccc;
+    }
+    .card {
+      background: white; padding: 15px; margin: 10px auto; width: 300px;
+      border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .username { font-weight: bold; color: #333; }
+  </style>
+</head>
+<body>
+  <h1>👻 SnapFriends Connect</h1>
+  <p>Partage ton pseudo Snapchat et ajoute des amis !</p>
+
+  <!-- Ton Snap affiché directement -->
+  <div class="card">
+    <p class="username">👤 black_babyboy1</p>
+    <p>Ajoute-moi sur Snapchat !</p>
+    <button onclick="alert('Ajoute black_babyboy1 sur Snapchat !')">Ajouter</button>
+  </div>
+
+  <form id="snapForm">
+    <input type="text" id="username" placeholder="Ton pseudo Snapchat" required>
+    <textarea id="bio" placeholder="Petite description (facultatif)"></textarea>
+    <button type="submit">Publier</button>
+  </form>
+
+  <div id="snapList"></div>
+
+  <script>
+    const form = document.getElementById("snapForm");
+    const snapList = document.getElementById("snapList");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const user = document.getElementById("username").value;
+      const bio = document.getElementById("bio").value;
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `<p class="username">👤 ${user}</p><p>${bio}</p><button onclick="alert('Ajoute ${user} sur Snapchat !')">Ajouter</button>`;
+      snapList.prepend(card);
+      form.reset();
+    });
+  </script>
+</body>
+</html>
